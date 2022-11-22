@@ -1,6 +1,8 @@
 package com.fedy97.springbootserver.services;
 
 import com.fedy97.springbootserver.commands.base.SpringCommandDispatcher;
+import com.fedy97.springbootserver.commands.create_experience.CreateExperienceCommandRequest;
+import com.fedy97.springbootserver.commands.create_experience.CreateExperienceCommandResponse;
 import com.fedy97.springbootserver.commands.get_experiences.GetExperiencesCommandRequest;
 import com.fedy97.springbootserver.commands.get_experiences.GetExperiencesCommandResponse;
 import com.fedy97.springbootserver.models.Experience;
@@ -14,7 +16,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ExperienceService implements IExperiencesService{
+public class ExperienceService implements IExperienceService {
 
     @Autowired
     private SpringCommandDispatcher commandDispatcher;
@@ -23,4 +25,11 @@ public class ExperienceService implements IExperiencesService{
         GetExperiencesCommandResponse responseCommand = commandDispatcher.dispatch(new GetExperiencesCommandRequest(voidRequest));
         return responseCommand.getExperiencesList();
     }
+
+    @Override
+    public ExperienceResponse createExperience(Experience experienceRequest) {
+        CreateExperienceCommandResponse response = commandDispatcher.dispatch(new CreateExperienceCommandRequest(experienceRequest));
+        return response.getExperienceResponse();
+    }
+
 }

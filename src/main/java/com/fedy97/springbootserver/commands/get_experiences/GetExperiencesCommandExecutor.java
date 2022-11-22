@@ -7,6 +7,10 @@ import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import com.fedy97.springbootserver.repositories.ExperienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +25,15 @@ public class GetExperiencesCommandExecutor implements CommandExecutor<GetExperie
     ExperienceRepository experienceRepository;
 
     private List<ExperienceResponse> getExperiences(VoidRequest voidRequest) {
-        List<Experience> experiences;
-        // todo use the void request for the page and sort
-        experiences = experienceRepository.findAll();
+        Page<Experience> experiences;
+        Pageable pageable;
+        if (voidRequest.getSort()[1] != null && voidRequest.getSort()[1].equals("asc"))
+            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
+                    Sort.by(voidRequest.getSort()[0]).ascending());
+        else
+            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
+                    Sort.by(voidRequest.getSort()[0]).descending());
+        experiences = experienceRepository.findAll(pageable);
         return experiences.stream().map(ExperienceResponse::fromExperienceEntity).collect(Collectors.toList());
     }
 

@@ -5,16 +5,16 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@AllArgsConstructor
 @ToString
-public abstract class PagebleRequest {
+@AllArgsConstructor
+public abstract class PageableRequest {
     private int size;
     private int page;
 
     private String[] sort;
 
-    protected PagebleRequest() {
-        this.size = 10;
+    protected PageableRequest() {
+        this.size = 1000;
         this.page = 0;
         sort = new String[]{};
     }

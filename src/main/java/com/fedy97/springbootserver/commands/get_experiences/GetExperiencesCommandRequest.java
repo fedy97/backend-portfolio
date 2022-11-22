@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 public class GetExperiencesCommandRequest extends Command<GetExperiencesCommandResponse> {
-// no arguments for now, but we can set size and page for example here
     private final VoidRequest voidRequest;
 }
