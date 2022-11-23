@@ -13,8 +13,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.Date;
-
 @Slf4j
 @ControllerAdvice
 // with ControllerAdvice we need to return ResponseEntity, with RestControllerAdvice the http json will be automatically created

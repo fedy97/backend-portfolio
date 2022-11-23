@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * class used for Patch requests, where we only need to perform delta updates.
+ */
 @Configuration
 public class JacksonConfiguration {
     private final ObjectMapper objectMapper;

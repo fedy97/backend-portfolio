@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+/**
+ * this class is responsible for the logging of http requests and responses
+ */
 @Component
 @Slf4j
 public class LoggingFilter extends OncePerRequestFilter {

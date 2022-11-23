@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * handles authentication errors
+ */
 @Component
 @Slf4j
 public class AuthEntryPointHandler implements AuthenticationEntryPoint {
