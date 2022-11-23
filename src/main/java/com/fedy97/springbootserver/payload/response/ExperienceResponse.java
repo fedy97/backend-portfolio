@@ -7,7 +7,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ExperienceResponse extends SerializableResponse {
+public class ExperienceResponse {
+    private String id;
     private String role;
     private int startYear;
     private int endYear;
@@ -15,16 +16,4 @@ public class ExperienceResponse extends SerializableResponse {
     private String link;
     private String description;
     private List<String> skills;
-
-    //public static ExperienceResponse fromExperienceEntity(Experience experience) {
-    //    return new ExperienceResponse(
-    //            experience.getRole(),
-    //            experience.getStartYear(),
-    //            experience.getEndYear(),
-    //            experience.getCompany(),
-    //            experience.getLink(),
-    //            experience.getDescription(),
-    //            experience.getSkills()
-    //    );
-    //}
 }

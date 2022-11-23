@@ -3,9 +3,13 @@ package com.fedy97.springbootserver.services;
 import com.fedy97.springbootserver.commands.SpringCommandDispatcher;
 import com.fedy97.springbootserver.commands.experience.create_experience.CreateExperienceCommandRequest;
 import com.fedy97.springbootserver.commands.experience.create_experience.CreateExperienceCommandResponse;
+import com.fedy97.springbootserver.commands.experience.delete_experience.DeleteExperienceCommandRequest;
 import com.fedy97.springbootserver.commands.experience.get_experiences.GetExperiencesCommandRequest;
 import com.fedy97.springbootserver.commands.experience.get_experiences.GetExperiencesCommandResponse;
-import com.fedy97.springbootserver.payload.request.ExperienceRequest;
+import com.fedy97.springbootserver.commands.experience.patch_experience.PatchExperienceCommandRequest;
+import com.fedy97.springbootserver.commands.experience.patch_experience.PatchExperienceCommandResponse;
+import com.fedy97.springbootserver.payload.request.NewExperienceRequest;
+import com.fedy97.springbootserver.payload.request.PatchExperienceRequest;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +31,19 @@ public class ExperienceService implements IExperienceService {
     }
 
     @Override
-    public ExperienceResponse createExperience(ExperienceRequest experienceRequest) {
+    public ExperienceResponse createExperience(NewExperienceRequest experienceRequest) {
         CreateExperienceCommandResponse response = commandDispatcher.dispatch(new CreateExperienceCommandRequest(experienceRequest));
+        return response.getExperienceResponse();
+    }
+
+    @Override
+    public void deleteExperience(String id) {
+        commandDispatcher.dispatch(new DeleteExperienceCommandRequest(id));
+    }
+
+    @Override
+    public ExperienceResponse patchEntity(String id, PatchExperienceRequest experienceRequest) {
+        PatchExperienceCommandResponse response = commandDispatcher.dispatch(new PatchExperienceCommandRequest(experienceRequest, id));
         return response.getExperienceResponse();
     }
 

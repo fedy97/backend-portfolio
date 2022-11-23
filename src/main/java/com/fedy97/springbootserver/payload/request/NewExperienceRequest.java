@@ -7,12 +7,12 @@ import java.util.List;
 
 
 @Data
-public class ExperienceRequest {
+public class NewExperienceRequest {
     @NotNull
     private String role;
     @NotNull
-    private int startYear;
-    private int endYear;
+    private String startYear;
+    private String endYear;
     @NotNull
     private String company;
     private String link;

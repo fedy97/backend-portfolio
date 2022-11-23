@@ -7,12 +7,13 @@ public abstract class SerializableResponse {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    SerializableResponse() {
-
-    }
-
-    protected String writeJson() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(this);
+    @Override
+    public String toString() {
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

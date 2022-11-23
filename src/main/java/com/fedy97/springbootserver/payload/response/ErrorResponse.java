@@ -8,9 +8,9 @@ public class ErrorResponse {
     private String message;
     private String description;
 
-    public ErrorResponse(int statusCode, Date timestamp, String message, String description) {
+    public ErrorResponse(int statusCode, String message, String description) {
         this.statusCode = statusCode;
-        this.timestamp = timestamp;
+        this.timestamp = new Date();
         this.message = message;
         this.description = description;
     }

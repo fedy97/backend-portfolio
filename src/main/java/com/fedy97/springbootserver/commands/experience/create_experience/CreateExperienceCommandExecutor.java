@@ -3,7 +3,7 @@ package com.fedy97.springbootserver.commands.experience.create_experience;
 
 import com.fedy97.springbootserver.commands.base.CommandExecutor;
 import com.fedy97.springbootserver.models.Experience;
-import com.fedy97.springbootserver.payload.request.ExperienceRequest;
+import com.fedy97.springbootserver.payload.request.NewExperienceRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import com.fedy97.springbootserver.repositories.ExperienceRepository;
 import com.fedy97.springbootserver.utils.Converter;
@@ -22,7 +22,7 @@ public class CreateExperienceCommandExecutor implements CommandExecutor<CreateEx
         return new CreateExperienceCommandResponse(entity);
     }
 
-    private ExperienceResponse createExperience(ExperienceRequest experienceRequest) {
+    private ExperienceResponse createExperience(NewExperienceRequest experienceRequest) {
         Experience experience = Converter.convertDtoToEntity(experienceRequest, Experience.class);
         experience = experienceRepository.save(experience);
         return Converter.convertEntityToDto(experience, ExperienceResponse.class);
