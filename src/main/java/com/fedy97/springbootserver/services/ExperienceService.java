@@ -6,6 +6,7 @@ import com.fedy97.springbootserver.commands.create_experience.CreateExperienceCo
 import com.fedy97.springbootserver.commands.get_experiences.GetExperiencesCommandRequest;
 import com.fedy97.springbootserver.commands.get_experiences.GetExperiencesCommandResponse;
 import com.fedy97.springbootserver.models.Experience;
+import com.fedy97.springbootserver.payload.request.ExperienceRequest;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ExperienceService implements IExperienceService {
     }
 
     @Override
-    public ExperienceResponse createExperience(Experience experienceRequest) {
+    public ExperienceResponse createExperience(ExperienceRequest experienceRequest) {
         CreateExperienceCommandResponse response = commandDispatcher.dispatch(new CreateExperienceCommandRequest(experienceRequest));
         return response.getExperienceResponse();
     }

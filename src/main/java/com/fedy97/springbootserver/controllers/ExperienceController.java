@@ -1,6 +1,7 @@
 package com.fedy97.springbootserver.controllers;
 
 import com.fedy97.springbootserver.models.Experience;
+import com.fedy97.springbootserver.payload.request.ExperienceRequest;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import com.fedy97.springbootserver.services.ExperienceService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,9 +34,8 @@ public class ExperienceController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<ExperienceResponse> createExperience(@RequestBody String body) {
-        log.info("CREATING EXPERIENCE");
-        // todo create experience from body
-        return ResponseEntity.ok(experienceService.createExperience(new Experience()));
+    public ResponseEntity<ExperienceResponse> createExperience(@Valid @RequestBody ExperienceRequest body) {
+        log.info("CREATE EXPERIENCE");
+        return ResponseEntity.ok(experienceService.createExperience(body));
     }
 }

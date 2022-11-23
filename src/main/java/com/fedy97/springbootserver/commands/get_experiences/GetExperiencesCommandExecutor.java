@@ -6,6 +6,7 @@ import com.fedy97.springbootserver.models.Experience;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import com.fedy97.springbootserver.repositories.ExperienceRepository;
+import com.fedy97.springbootserver.utils.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,7 +35,7 @@ public class GetExperiencesCommandExecutor implements CommandExecutor<GetExperie
             pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
                     Sort.by(voidRequest.getSort()[0]).descending());
         experiences = experienceRepository.findAll(pageable);
-        return experiences.stream().map(ExperienceResponse::fromExperienceEntity).collect(Collectors.toList());
+        return experiences.stream().map(experience -> Converter.convertEntityToDto(experience, ExperienceResponse.class)).collect(Collectors.toList());
     }
 
     @Override
