@@ -1,11 +1,10 @@
 package com.fedy97.springbootserver.services;
 
-import com.fedy97.springbootserver.commands.base.SpringCommandDispatcher;
-import com.fedy97.springbootserver.commands.create_experience.CreateExperienceCommandRequest;
-import com.fedy97.springbootserver.commands.create_experience.CreateExperienceCommandResponse;
-import com.fedy97.springbootserver.commands.get_experiences.GetExperiencesCommandRequest;
-import com.fedy97.springbootserver.commands.get_experiences.GetExperiencesCommandResponse;
-import com.fedy97.springbootserver.models.Experience;
+import com.fedy97.springbootserver.commands.SpringCommandDispatcher;
+import com.fedy97.springbootserver.commands.experience.create_experience.CreateExperienceCommandRequest;
+import com.fedy97.springbootserver.commands.experience.create_experience.CreateExperienceCommandResponse;
+import com.fedy97.springbootserver.commands.experience.get_experiences.GetExperiencesCommandRequest;
+import com.fedy97.springbootserver.commands.experience.get_experiences.GetExperiencesCommandResponse;
 import com.fedy97.springbootserver.payload.request.ExperienceRequest;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;

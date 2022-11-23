@@ -1,4 +1,4 @@
-package com.fedy97.springbootserver.commands.get_experiences;
+package com.fedy97.springbootserver.commands.experience.get_experiences;
 
 
 import com.fedy97.springbootserver.commands.base.CommandExecutor;
@@ -12,10 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

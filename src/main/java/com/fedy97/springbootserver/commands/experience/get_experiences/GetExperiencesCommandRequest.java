@@ -1,11 +1,9 @@
-package com.fedy97.springbootserver.commands.get_experiences;
+package com.fedy97.springbootserver.commands.experience.get_experiences;
 
 import com.fedy97.springbootserver.commands.base.Command;
-
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor

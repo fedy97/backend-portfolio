@@ -29,13 +29,11 @@ public class ExperienceController {
                                                                 @RequestParam(defaultValue = "startYear,desc") String[] sort
                                                                 //@RequestParam(required = false) String email
     ) {
-        log.info("GET ALL EXPERIENCES");
         return ResponseEntity.ok(experienceService.getExperiences(new VoidRequest(size,page,sort)));
     }
 
     @PostMapping("/new")
     public ResponseEntity<ExperienceResponse> createExperience(@Valid @RequestBody ExperienceRequest body) {
-        log.info("CREATE EXPERIENCE");
         return ResponseEntity.ok(experienceService.createExperience(body));
     }
 }

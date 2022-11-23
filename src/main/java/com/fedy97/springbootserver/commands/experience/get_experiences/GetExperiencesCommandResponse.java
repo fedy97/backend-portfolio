@@ -1,4 +1,4 @@
-package com.fedy97.springbootserver.commands.get_experiences;
+package com.fedy97.springbootserver.commands.experience.get_experiences;
 
 import com.fedy97.springbootserver.commands.base.CommandResponse;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;

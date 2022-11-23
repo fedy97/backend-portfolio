@@ -1,5 +1,7 @@
-package com.fedy97.springbootserver.commands.base;
+package com.fedy97.springbootserver.commands;
 
+import com.fedy97.springbootserver.commands.base.CommandDispatcher;
+import com.fedy97.springbootserver.commands.base.CommandExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

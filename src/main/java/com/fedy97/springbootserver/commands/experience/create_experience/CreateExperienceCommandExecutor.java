@@ -1,4 +1,4 @@
-package com.fedy97.springbootserver.commands.create_experience;
+package com.fedy97.springbootserver.commands.experience.create_experience;
 
 
 import com.fedy97.springbootserver.commands.base.CommandExecutor;
