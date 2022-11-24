@@ -1,4 +1,4 @@
-package com.fedy97.springbootserver.utils.errors;
+package com.fedy97.springbootserver.errors;
 
 import org.springframework.http.HttpStatus;
 

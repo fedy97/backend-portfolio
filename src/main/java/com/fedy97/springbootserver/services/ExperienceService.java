@@ -42,7 +42,7 @@ public class ExperienceService implements IExperienceService {
     }
 
     @Override
-    public ExperienceResponse patchEntity(String id, PatchExperienceRequest experienceRequest) {
+    public ExperienceResponse patchExperience(String id, PatchExperienceRequest experienceRequest) {
         PatchExperienceCommandResponse response = commandDispatcher.dispatch(new PatchExperienceCommandRequest(experienceRequest, id));
         return response.getExperienceResponse();
     }

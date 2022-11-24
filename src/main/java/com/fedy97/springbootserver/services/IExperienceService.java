@@ -16,6 +16,6 @@ public interface IExperienceService {
 
     void deleteExperience(String id);
 
-    ExperienceResponse patchEntity(String id, PatchExperienceRequest body);
+    ExperienceResponse patchExperience(String id, PatchExperienceRequest body);
 
 }

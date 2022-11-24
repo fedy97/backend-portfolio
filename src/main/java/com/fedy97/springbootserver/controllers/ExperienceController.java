@@ -42,6 +42,6 @@ public class ExperienceController {
 
     @PatchMapping("/update/{id}")
     public ResponseEntity<ExperienceResponse> patchExperience(@PathVariable String id, @RequestBody PatchExperienceRequest body) {
-        return ResponseEntity.ok(experienceService.patchEntity(id, body));
+        return ResponseEntity.ok(experienceService.patchExperience(id, body));
     }
 }

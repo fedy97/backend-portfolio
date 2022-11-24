@@ -2,13 +2,10 @@ package com.fedy97.springbootserver.utils.handlers;
 
 
 import com.fedy97.springbootserver.payload.response.ErrorResponse;
-import com.fedy97.springbootserver.utils.errors.CustomizedError;
+import com.fedy97.springbootserver.errors.CustomizedError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;

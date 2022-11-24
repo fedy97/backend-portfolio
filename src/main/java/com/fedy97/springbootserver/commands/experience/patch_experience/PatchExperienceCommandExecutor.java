@@ -3,13 +3,12 @@ package com.fedy97.springbootserver.commands.experience.patch_experience;
 
 import com.fedy97.springbootserver.commands.base.CommandExecutor;
 import com.fedy97.springbootserver.models.Experience;
-import com.fedy97.springbootserver.payload.request.NewExperienceRequest;
 import com.fedy97.springbootserver.payload.request.PatchExperienceRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import com.fedy97.springbootserver.repositories.ExperienceRepository;
 import com.fedy97.springbootserver.utils.Converter;
 import com.fedy97.springbootserver.utils.Utils;
-import com.fedy97.springbootserver.utils.errors.ExperienceNotFoundException;
+import com.fedy97.springbootserver.errors.ExperienceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
