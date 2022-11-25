@@ -26,7 +26,7 @@ public class ExperienceController {
                                                                 @RequestParam(defaultValue = "startYear,desc") String[] sort
                                                                 //@RequestParam(required = false) String email
     ) {
-        return ResponseEntity.ok(experienceService.getExperiences(new VoidRequest(size,page,sort)));
+        return ResponseEntity.ok(experienceService.getExperiences(new VoidRequest(size,page,sort, true)));
     }
 
     @PostMapping("/new")

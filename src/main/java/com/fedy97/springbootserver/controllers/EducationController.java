@@ -28,7 +28,7 @@ public class EducationController {
                                                                 @RequestParam(defaultValue = "startYear,desc") String[] sort
                                                                 //@RequestParam(required = false) String email
     ) {
-        return ResponseEntity.ok(educationService.getEducations(new VoidRequest(size,page,sort)));
+        return ResponseEntity.ok(educationService.getEducations(new VoidRequest(size,page,sort, true)));
     }
 
     @PostMapping("/new")

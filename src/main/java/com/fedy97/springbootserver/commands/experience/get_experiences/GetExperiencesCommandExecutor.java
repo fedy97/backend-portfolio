@@ -7,6 +7,7 @@ import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import com.fedy97.springbootserver.repositories.ExperienceRepository;
 import com.fedy97.springbootserver.utils.Utils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class GetExperiencesCommandExecutor implements CommandExecutor<GetExperiencesCommandRequest, GetExperiencesCommandResponse> {
 
     @Autowired
@@ -26,12 +28,15 @@ public class GetExperiencesCommandExecutor implements CommandExecutor<GetExperie
     private List<ExperienceResponse> getExperiences(VoidRequest voidRequest) {
         Page<Experience> experiences;
         Pageable pageable;
-        if (voidRequest.getSort()[1] != null && voidRequest.getSort()[1].equals("asc"))
+        if (voidRequest.isDoSort() && voidRequest.getSort()[1] != null && voidRequest.getSort()[1].equals("asc"))
             pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
                     Sort.by(voidRequest.getSort()[0]).ascending());
-        else
+        else if (voidRequest.isDoSort())
             pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
                     Sort.by(voidRequest.getSort()[0]).descending());
+        else {
+            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize());
+        }
         experiences = experienceRepository.findAll(pageable);
         return experiences.stream().map(experience -> Utils.convertEntityToDto(experience, ExperienceResponse.class)).collect(Collectors.toList());
     }

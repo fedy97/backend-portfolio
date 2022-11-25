@@ -24,10 +24,10 @@ public class ProjectController {
     @GetMapping("/all")
     public ResponseEntity<List<ProjectResponse>> getAllProjects(@RequestParam(defaultValue = "0") int page,
                                                                 @RequestParam(defaultValue = "1000") int size,
-                                                                @RequestParam(defaultValue = "startYear,desc") String[] sort
+                                                                String[] sort
                                                                 //@RequestParam(required = false) String email
     ) {
-        return ResponseEntity.ok(projectService.getProjects(new VoidRequest(size,page,sort)));
+        return ResponseEntity.ok(projectService.getProjects(new VoidRequest(size,page,sort, false)));
     }
 
     @PostMapping("/new")
