@@ -1,11 +1,11 @@
-package com.fedy97.springbootserver.commands.experience.get_experiences;
+package com.fedy97.springbootserver.commands.project.get_projects;
 
 
 import com.fedy97.springbootserver.commands.base.CommandExecutor;
-import com.fedy97.springbootserver.models.Experience;
+import com.fedy97.springbootserver.models.Project;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
-import com.fedy97.springbootserver.payload.response.ExperienceResponse;
-import com.fedy97.springbootserver.repositories.ExperienceRepository;
+import com.fedy97.springbootserver.payload.response.ProjectResponse;
+import com.fedy97.springbootserver.repositories.ProjectRepository;
 import com.fedy97.springbootserver.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class GetExperiencesCommandExecutor implements CommandExecutor<GetExperiencesCommandRequest, GetExperiencesCommandResponse> {
+public class GetProjectsCommandExecutor implements CommandExecutor<GetProjectsCommandRequest, GetProjectsCommandResponse> {
 
     @Autowired
-    ExperienceRepository experienceRepository;
+    ProjectRepository projectRepository;
 
-    private List<ExperienceResponse> getExperiences(VoidRequest voidRequest) {
-        Page<Experience> experiences;
+    private List<ProjectResponse> getProjects(VoidRequest voidRequest) {
+        Page<Project> projects;
         Pageable pageable;
         if (voidRequest.getSort()[1] != null && voidRequest.getSort()[1].equals("asc"))
             pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
@@ -32,14 +32,14 @@ public class GetExperiencesCommandExecutor implements CommandExecutor<GetExperie
         else
             pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
                     Sort.by(voidRequest.getSort()[0]).descending());
-        experiences = experienceRepository.findAll(pageable);
-        return experiences.stream().map(experience -> Utils.convertEntityToDto(experience, ExperienceResponse.class)).collect(Collectors.toList());
+        projects = projectRepository.findAll(pageable);
+        return projects.stream().map(project -> Utils.convertEntityToDto(project, ProjectResponse.class)).collect(Collectors.toList());
     }
 
     @Override
-    public GetExperiencesCommandResponse execute(GetExperiencesCommandRequest command) {
-        List<ExperienceResponse> entityList = getExperiences(command.getVoidRequest());
-        return new GetExperiencesCommandResponse(entityList);
+    public GetProjectsCommandResponse execute(GetProjectsCommandRequest command) {
+        List<ProjectResponse> entityList = getProjects(command.getVoidRequest());
+        return new GetProjectsCommandResponse(entityList);
     }
 
 }

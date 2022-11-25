@@ -1,10 +1,9 @@
 package com.fedy97.springbootserver.controllers;
 
-import com.fedy97.springbootserver.payload.request.NewExperienceRequest;
-import com.fedy97.springbootserver.payload.request.PatchExperienceRequest;
+import com.fedy97.springbootserver.payload.request.ExperienceRequest;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
-import com.fedy97.springbootserver.services.ExperienceService;
+import com.fedy97.springbootserver.services.interfaces.IExperienceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ import java.util.List;
 public class ExperienceController {
 
     @Autowired
-    private ExperienceService experienceService;
+    private IExperienceService experienceService;
 
     //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
@@ -31,7 +30,7 @@ public class ExperienceController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<ExperienceResponse> createExperience(@Valid @RequestBody NewExperienceRequest body) {
+    public ResponseEntity<ExperienceResponse> createExperience(@Valid @RequestBody ExperienceRequest body) {
         return ResponseEntity.ok(experienceService.createExperience(body));
     }
 
@@ -41,7 +40,7 @@ public class ExperienceController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<ExperienceResponse> patchExperience(@PathVariable String id, @RequestBody PatchExperienceRequest body) {
+    public ResponseEntity<ExperienceResponse> patchExperience(@PathVariable String id, @RequestBody ExperienceRequest body) {
         return ResponseEntity.ok(experienceService.patchExperience(id, body));
     }
 }

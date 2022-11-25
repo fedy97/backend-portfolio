@@ -24,7 +24,7 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 ex.getMessage(),
-                request.getDescription(false)), HttpStatus.UNPROCESSABLE_ENTITY);
+                request.getDescription(true)), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     /**
@@ -36,7 +36,7 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(
                 ex.code().value(),
                 ex.getMessage(),
-                request.getDescription(false)), HttpStatus.valueOf(ex.code().value()));
+                request.getDescription(true)), HttpStatus.valueOf(ex.code().value()));
     }
 
     /**

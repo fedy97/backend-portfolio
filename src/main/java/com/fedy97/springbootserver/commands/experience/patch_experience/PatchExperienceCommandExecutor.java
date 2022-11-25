@@ -3,15 +3,16 @@ package com.fedy97.springbootserver.commands.experience.patch_experience;
 
 import com.fedy97.springbootserver.commands.base.CommandExecutor;
 import com.fedy97.springbootserver.models.Experience;
-import com.fedy97.springbootserver.payload.request.PatchExperienceRequest;
+import com.fedy97.springbootserver.payload.request.ExperienceRequest;
 import com.fedy97.springbootserver.payload.response.ExperienceResponse;
 import com.fedy97.springbootserver.repositories.ExperienceRepository;
-import com.fedy97.springbootserver.utils.Converter;
 import com.fedy97.springbootserver.utils.Utils;
 import com.fedy97.springbootserver.errors.ExperienceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -26,17 +27,17 @@ public class PatchExperienceCommandExecutor implements CommandExecutor<PatchExpe
         return new PatchExperienceCommandResponse(entity);
     }
 
-    private ExperienceResponse patchExperience(String id, PatchExperienceRequest experienceRequest) {
+    private ExperienceResponse patchExperience(String id, ExperienceRequest experienceRequest) {
         Experience experience = experienceRepository.findById(id).orElseThrow(ExperienceNotFoundException::new);
-        Utils.changeIfPresent(experienceRequest.getCompany(), experience::setCompany);
-        Utils.changeIfPresent(experienceRequest.getRole(), experience::setRole);
-        Utils.changeIfPresent(experienceRequest.getLink(), experience::setLink);
-        Utils.changeIfPresent(experienceRequest.getDescription(), experience::setDescription);
-        Utils.changeIfPresent(experienceRequest.getSkills(), experience::setSkills);
-        Utils.changeIfPresent(experienceRequest.getEndYear(), experience::setEndYear);
-        Utils.changeIfPresent(experienceRequest.getStartYear(), experience::setStartYear);
+        Optional.ofNullable(experienceRequest.getCompany()).ifPresent(experience::setCompany);
+        Optional.ofNullable(experienceRequest.getRole()).ifPresent(experience::setRole);
+        Optional.ofNullable(experienceRequest.getLink()).ifPresent(experience::setLink);
+        Optional.ofNullable(experienceRequest.getDescription()).ifPresent(experience::setDescription);
+        Optional.ofNullable(experienceRequest.getSkills()).ifPresent(experience::setSkills);
+        Optional.ofNullable(experienceRequest.getEndYear()).ifPresent(experience::setEndYear);
+        Optional.ofNullable(experienceRequest.getStartYear()).ifPresent(experience::setStartYear);
         experience = experienceRepository.save(experience);
-        return Converter.convertEntityToDto(experience, ExperienceResponse.class);
+        return Utils.convertEntityToDto(experience, ExperienceResponse.class);
     }
 
 
