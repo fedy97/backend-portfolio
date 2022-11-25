@@ -25,17 +25,7 @@ public class GetProjectsCommandExecutor implements CommandExecutor<GetProjectsCo
 
     private List<ProjectResponse> getProjects(VoidRequest voidRequest) {
         Page<Project> projects;
-        Pageable pageable;
-        if (voidRequest.isDoSort() && voidRequest.getSort()[1] != null && voidRequest.getSort()[1].equals("asc"))
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
-                    Sort.by(voidRequest.getSort()[0]).ascending());
-        else if (voidRequest.isDoSort())
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
-                    Sort.by(voidRequest.getSort()[0]).descending());
-        else {
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize());
-        }
-        projects = projectRepository.findAll(pageable);
+        projects = projectRepository.findAll(voidRequest.getPageable());
         return projects.stream().map(project -> Utils.convertEntityToDto(project, ProjectResponse.class)).collect(Collectors.toList());
     }
 

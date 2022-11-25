@@ -25,17 +25,7 @@ public class GetEducationsCommandExecutor implements CommandExecutor<GetEducatio
 
     private List<EducationResponse> getEducations(VoidRequest voidRequest) {
         Page<Education> educations;
-        Pageable pageable;
-        if (voidRequest.isDoSort() && voidRequest.getSort()[1] != null && voidRequest.getSort()[1].equals("asc"))
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
-                    Sort.by(voidRequest.getSort()[0]).ascending());
-        else if (voidRequest.isDoSort())
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
-                    Sort.by(voidRequest.getSort()[0]).descending());
-        else {
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize());
-        }
-        educations = educationRepository.findAll(pageable);
+        educations = educationRepository.findAll(voidRequest.getPageable());
         return educations.stream().map(education -> Utils.convertEntityToDto(education, EducationResponse.class)).collect(Collectors.toList());
     }
 

@@ -27,17 +27,7 @@ public class GetExperiencesCommandExecutor implements CommandExecutor<GetExperie
 
     private List<ExperienceResponse> getExperiences(VoidRequest voidRequest) {
         Page<Experience> experiences;
-        Pageable pageable;
-        if (voidRequest.isDoSort() && voidRequest.getSort()[1] != null && voidRequest.getSort()[1].equals("asc"))
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
-                    Sort.by(voidRequest.getSort()[0]).ascending());
-        else if (voidRequest.isDoSort())
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize(),
-                    Sort.by(voidRequest.getSort()[0]).descending());
-        else {
-            pageable = PageRequest.of(voidRequest.getPage(), voidRequest.getSize());
-        }
-        experiences = experienceRepository.findAll(pageable);
+        experiences = experienceRepository.findAll(voidRequest.getPageable());
         return experiences.stream().map(experience -> Utils.convertEntityToDto(experience, ExperienceResponse.class)).collect(Collectors.toList());
     }
 
