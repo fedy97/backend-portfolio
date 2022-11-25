@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Document("personal")
@@ -25,6 +27,7 @@ public class Personal {
     private String linkedinLink;
     private String resumeLink;
     private String location;
+    private String birth;
     private String photo;
 
 }

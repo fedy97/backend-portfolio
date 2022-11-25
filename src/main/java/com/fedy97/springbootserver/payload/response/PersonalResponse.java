@@ -15,4 +15,5 @@ public class PersonalResponse {
     private String resumeLink;
     private String location;
     private String photo;
+    private String birth;
 }

@@ -11,6 +11,6 @@ public interface IPersonalService {
 
     PersonalResponse createPersonal(PersonalRequest personalRequest);
 
-    PersonalResponse patchPersonal(String id, PersonalRequest body);
+    PersonalResponse patchPersonal(PersonalRequest body);
 
 }
