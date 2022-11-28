@@ -56,7 +56,7 @@ jobs:
     - name: Docker Push
       env:
         REPO: backend-repo
-      run:
+      run: |
         docker build -t $REPO .
         docker tag $REPO:latest ${{secrets.DOCKER_USER}}/$REPO:latest
         docker push ${{secrets.DOCKER_USER}}/$REPO
