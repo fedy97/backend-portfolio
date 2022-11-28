@@ -1,6 +1,6 @@
 node {
     stage('Build') {
-        withMaven(maven: 'maven-3.8.6') {
+        withMaven(maven: 'M2_HOME') {
             sh "mvn clean install"
         }
     }
