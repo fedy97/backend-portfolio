@@ -38,7 +38,7 @@ jobs:
       run: mvn -B package -DskipTests --file pom.xml
 
     - name: Create Staging Directory
-      run: mkdir staging && cp target/*jar-with-dependencies.jar staging
+      run: mkdir staging && cp target/*.jar staging
 
     - name: Publish Package
       uses: actions/upload-artifact@v1
