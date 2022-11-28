@@ -1,11 +1,11 @@
+FROM maven:3.6.3-openjdk-14-slim AS build
+RUN mkdir -p /workspace
+WORKDIR /workspace
+COPY pom.xml /workspace
+COPY src /workspace/src
+RUN mvn -B package --file pom.xml -DskipTests
+
 FROM openjdk:8-jdk
-
-WORKDIR /app
-
-COPY /staging/app.jar /app/project.jar
-
-CMD java -jar project.jar
-
+COPY --from=build /workspace/target/*.jar app.jar
 EXPOSE 8080
-
-HEALTHCHECK --interval=30s --timeout=30s --start-period=15s --retries=3 CMD curl -f localhost:8080/actuator/health || exit 1
+ENTRYPOINT ["java","-jar","app.jar"]
