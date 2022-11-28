@@ -2,7 +2,7 @@ FROM openjdk:8-jdk
 
 WORKDIR /app
 
-COPY /home/runner/work/backend-portfolio/backend-portfolio/staging/app.jar /app/project.jar
+COPY /staging/app.jar /app/project.jar
 
 CMD java -jar project.jar
 
