@@ -43,5 +43,5 @@ jobs:
     - name: Publish Package
       uses: actions/upload-artifact@v1
       with:
-        name: Package
+        name: app.jar
         path: staging
