@@ -72,5 +72,5 @@ jobs:
         envs: GITHUB_SHA
         script: |
           docker login -u  ${{secrets.DOCKER_USER}} -p  ${{secrets.DOCKER_PASSWORD}}
-          docker pull ${{secrets.DOCKER_USER}}/$REPO
-          docker run -d -e DB_URI='${{secrets.DB_URI}}' -e USER='${{secrets.DB_URI}}' -e PASSWORD='${{secrets.PASSWORD}}' -e MONGO_HOST='${{secrets.MONGO_HOST}}' -e MONGO_PORT='${{secrets.MONGO_PORT}}' --name backend_server -p 8080:8080 ${{secrets.DOCKER_USER}}/$REPO
+          docker pull ${{secrets.DOCKER_USER}}/backend-repo
+          docker run -d -e DB_URI='${{secrets.DB_URI}}' -e USER='${{secrets.DB_URI}}' -e PASSWORD='${{secrets.PASSWORD}}' -e MONGO_HOST='${{secrets.MONGO_HOST}}' -e MONGO_PORT='${{secrets.MONGO_PORT}}' --name backend_server -p 8080:8080 ${{secrets.DOCKER_USER}}/backend-repo
