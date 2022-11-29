@@ -9,6 +9,7 @@
 - [x] Exception Handling
 - [x] Authentication
 - [x] Authorization
+- [x] Pagination
 - [x] Controller + Services + Repositories
 - [x] Command Pattern
 - [x] Maven
@@ -17,6 +18,18 @@
 - [x] AWS EC2 instance deploy
 
 # Docs:
+
+#### Before starting the project you need to define some `env variables`:
+- `DB_URI` = `mongodb+srv://<mongodb username>:<mongodb password>@<cluster mongdb>/portfolio`
+- `USER` = `username for basic auth`
+- `PASSWORD` = `password for basic auth`
+- `MONGO_HOST`= `url host for mongodb`
+- `MONGO_PORT` = `port for mongodb, 27017`
+
+you can use as `query params` for pagination the following values:
+- `size` -> `int` (defaults to 1000)
+- `page` -> `int` (defaults to 0)
+- `sort` -> `columnValue,sortingOrder` (defaults to `_id,asc`)
 
 # 📁 Collection: experiences
 
