@@ -1,5 +1,8 @@
 # Personal Portfolio Backend
 
+[![Maven Package](https://github.com/fedy97/backend-portfolio/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/fedy97/backend-portfolio/actions/workflows/maven-publish.yml)
+
+### Summary:
 - [x] Spring Boot
 - [x] MongoDB
 - [x] Lombok Logging
@@ -13,4 +16,3 @@
 - [x] GitHub Actions workflow
 - [x] AWS EC2 instance deploy
 
-[![Maven Package](https://github.com/fedy97/backend-portfolio/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/fedy97/backend-portfolio/actions/workflows/maven-publish.yml)
