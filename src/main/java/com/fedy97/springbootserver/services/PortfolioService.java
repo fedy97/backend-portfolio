@@ -9,6 +9,8 @@ import com.fedy97.springbootserver.commands.personal.get_personal.GetPersonalCom
 import com.fedy97.springbootserver.commands.personal.get_personal.GetPersonalCommandResponse;
 import com.fedy97.springbootserver.commands.project.get_projects.GetProjectsCommandRequest;
 import com.fedy97.springbootserver.commands.project.get_projects.GetProjectsCommandResponse;
+import com.fedy97.springbootserver.commands.skill.get_skills.GetSkillsCommandRequest;
+import com.fedy97.springbootserver.commands.skill.get_skills.GetSkillsCommandResponse;
 import com.fedy97.springbootserver.payload.request.VoidRequest;
 import com.fedy97.springbootserver.payload.response.PortfolioResponse;
 import com.fedy97.springbootserver.services.interfaces.IPortfolioService;
@@ -29,11 +31,15 @@ public class PortfolioService implements IPortfolioService {
             GetPersonalCommandResponse personalCommandResponse = commandDispatcher.dispatch(new GetPersonalCommandRequest(voidRequest));
             GetExperiencesCommandResponse experiencesCommandResponse = commandDispatcher.dispatch(new GetExperiencesCommandRequest(voidRequest));
             GetEducationsCommandResponse educationsCommandResponse = commandDispatcher.dispatch(new GetEducationsCommandRequest(voidRequest));
+            voidRequest.setDefaultSort();
             GetProjectsCommandResponse projectsCommandResponse = commandDispatcher.dispatch(new GetProjectsCommandRequest(voidRequest));
+            voidRequest.setSort(new String[]{"skillName","asc"});
+            GetSkillsCommandResponse skillsCommandResponse = commandDispatcher.dispatch(new GetSkillsCommandRequest(voidRequest));
             portfolioResponse.setEducationResponses(educationsCommandResponse.getEducationsList());
             portfolioResponse.setPersonalResponse(personalCommandResponse.getPersonalList());
             portfolioResponse.setExperienceResponses(experiencesCommandResponse.getExperiencesList());
             portfolioResponse.setProjectResponses(projectsCommandResponse.getProjectsList());
+            portfolioResponse.setSkillResponses(skillsCommandResponse.getSkillsList());
             return portfolioResponse;
         } catch (Exception e) {
             e.printStackTrace();

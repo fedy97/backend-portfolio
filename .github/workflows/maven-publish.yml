@@ -62,15 +62,15 @@ jobs:
         docker tag $REPO:latest ${{secrets.DOCKER_USER}}/$REPO:latest
         docker push ${{secrets.DOCKER_USER}}/$REPO
 
-    - name: Docker Pull & Run from EC2 Instance
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{secrets.SSH_HOST}}
-        username: ${{secrets.SSH_USERNAME}}
-        key: ${{secrets.SSH_PRIVATE_KEY}}
-        port: 22
-        envs: GITHUB_SHA
-        script: |
-          docker login -u  ${{secrets.DOCKER_USER}} -p  ${{secrets.DOCKER_PASSWORD}}
-          docker-compose pull
-          docker-compose up -d
+    #- name: Docker Pull & Run from EC2 Instance
+    #  uses: appleboy/ssh-action@master
+    #  with:
+    #    host: ${{secrets.SSH_HOST}}
+    #    username: ${{secrets.SSH_USERNAME}}
+    #    key: ${{secrets.SSH_PRIVATE_KEY}}
+    #    port: 22
+    #    envs: GITHUB_SHA
+    #    script: |
+    #      docker login -u  ${{secrets.DOCKER_USER}} -p  ${{secrets.DOCKER_PASSWORD}}
+    #      docker-compose pull
+    #      docker-compose up -d

@@ -1,5 +1,6 @@
 package com.fedy97.springbootserver.payload.request;
 
+import com.fedy97.springbootserver.errors.InvalidPageException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,12 +23,12 @@ public abstract class PageableRequest {
     protected PageableRequest() {
         this.size = 1000;
         this.page = 0;
-        this.doSort = false;
-        sort = new String[]{"_id","asc"};
-        this.pageable = createPage();
+        setDefaultSort();
     }
 
     protected PageableRequest(int size, int page, String[] sort, boolean doSort) {
+        if (doSort && (sort == null || sort.length == 0))
+            throw new InvalidPageException();
         this.size = size;
         this.page = page;
         this.sort = sort;
@@ -35,7 +36,7 @@ public abstract class PageableRequest {
         this.pageable = createPage();
     }
 
-    public Pageable createPage() {
+    private Pageable createPage() {
         Pageable newPage;
         if (isDoSort() && getSort()[1] != null && getSort()[1].equals("asc"))
             newPage = PageRequest.of(getPage(), getSize(),
@@ -47,6 +48,12 @@ public abstract class PageableRequest {
             newPage = PageRequest.of(getPage(), getSize());
         }
         return newPage;
+    }
+
+    public void setDefaultSort() {
+        this.sort = new String[]{"_id", "asc"};
+        setDoSort(true);
+        this.pageable = createPage();
     }
 
     public void setSort(String[] sort) {

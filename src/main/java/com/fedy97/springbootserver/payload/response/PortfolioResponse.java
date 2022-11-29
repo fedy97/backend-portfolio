@@ -10,5 +10,6 @@ public class PortfolioResponse {
     private List<ProjectResponse> projectResponses;
     private PersonalResponse personalResponse;
     private List<EducationResponse> educationResponses;
+    private List<SkillResponse> skillResponses;
 
 }
