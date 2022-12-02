@@ -20,6 +20,7 @@ public class Personal {
     private String id;
     private String firstName;
     private String lastName;
+    private String about;
     private String jobTitle;
     private String email;
     private String phoneNumber;

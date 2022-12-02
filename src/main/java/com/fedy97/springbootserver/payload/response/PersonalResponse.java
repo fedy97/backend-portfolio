@@ -16,4 +16,5 @@ public class PersonalResponse {
     private String location;
     private String photo;
     private String birth;
+    private String about;
 }

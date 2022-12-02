@@ -22,6 +22,7 @@ public class PersonalRequest {
     @NotNull(groups = {NewGroup.class})
     @Email(groups = {NewGroup.class, PatchGroup.class})
     private String email;
+    private String about;
     @Pattern(groups = {NewGroup.class, PatchGroup.class}, regexp = "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$")
     private String phoneNumber;
     @Pattern(groups = {NewGroup.class, PatchGroup.class}, regexp = "^(http(s):\\/\\/.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$")

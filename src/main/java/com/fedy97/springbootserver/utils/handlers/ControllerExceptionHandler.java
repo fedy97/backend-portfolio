@@ -40,7 +40,7 @@ public class ControllerExceptionHandler {
     }
 
     /**
-     * if not other exceptions are thrown, throw this
+     * if no other exceptions are thrown, throw this
      * @param ex not caught before
      */
     @ExceptionHandler(Exception.class)

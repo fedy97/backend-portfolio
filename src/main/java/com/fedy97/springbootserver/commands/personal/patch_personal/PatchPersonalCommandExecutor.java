@@ -44,6 +44,7 @@ public class PatchPersonalCommandExecutor implements CommandExecutor<PatchPerson
         Optional.ofNullable(personalRequest.getPhoneNumber()).ifPresent(personal::setPhoneNumber);
         Optional.ofNullable(personalRequest.getJobTitle()).ifPresent(personal::setJobTitle);
         Optional.ofNullable(personalRequest.getBirth()).ifPresent(personal::setBirth);
+        Optional.ofNullable(personalRequest.getAbout()).ifPresent(personal::setAbout);
         personal = personalRepository.save(personal);
         return Utils.convertEntityToDto(personal, PersonalResponse.class);
     }
