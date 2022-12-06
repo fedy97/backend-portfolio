@@ -5,7 +5,7 @@ COPY pom.xml /workspace
 COPY src /workspace/src
 RUN mvn -B package --file pom.xml -DskipTests
 
-FROM arm64v8/openjdk
+FROM adoptopenjdk/openjdk11:aarch64-ubuntu-jdk-11.0.10_9-slim
 COPY --from=build /workspace/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
