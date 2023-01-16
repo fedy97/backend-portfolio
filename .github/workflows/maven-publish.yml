@@ -74,3 +74,4 @@ jobs:
           docker login -u  ${{secrets.DOCKER_USER}} -p  ${{secrets.DOCKER_PASSWORD}}
           docker-compose pull
           docker-compose up -d
+          docker rmi $(docker images -a | grep "<none>" | grep "${{secrets.DOCKER_USER}}/backend-repo" | awk '{print $3}')
